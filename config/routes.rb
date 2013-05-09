@@ -1,4 +1,5 @@
 LostAndFound::Application.routes.draw do
+  resources :items
   resources :users
   resources :sessions
 
@@ -6,5 +7,5 @@ LostAndFound::Application.routes.draw do
   get "login" => "sessions#new", :as => "login"
   get "signup" => "users#new", :as => "signup"
 
-  root :to => "sessions#new"
+  root :to => "items#index"
 end

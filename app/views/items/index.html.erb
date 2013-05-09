@@ -1,0 +1,55 @@
+<h1>Lost Items</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>User</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @items.each do |item| %>
+  <% if item.is_lost %>
+  <tr>
+    <td><%= item.name %></td>
+    <td><%= item.description %></td>
+    <td><%= item.user.email %></td>
+    <td><%= link_to "Show", item %></td>
+    <td><%= link_to "Edit", edit_item_path(item) %></td>
+    <td><%= link_to "Destroy", item, method: :delete, data: { confirm: "Are you sure?" } %></td>
+  </tr>
+  <% end %>
+<% end %>
+</table>
+<br/>
+
+<h1>Found Items</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>User</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @items.each do |item| %>
+  <% unless item.is_lost %>
+  <tr>
+    <td><%= item.name %></td>
+    <td><%= item.description %></td>
+    <td><%= item.user.email %></td>
+    <td><%= link_to "Show", item %></td>
+    <td><%= link_to "Edit", edit_item_path(item) %></td>
+    <td><%= link_to "Destroy", item, method: :delete, data: { confirm: "Are you sure?" } %></td>
+  </tr>
+  <% end %>
+<% end %>
+</table>
+<br/>
+
+<%= link_to "Report New Item", new_item_path %>
