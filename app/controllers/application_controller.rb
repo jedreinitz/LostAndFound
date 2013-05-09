@@ -1,12 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   helper_method :current_user
-  before_filter :add_value_to_session
-
-  private
-  def add_value_to_session
-    session[:message] = "Hello World!"
-  end
 
   private
   def current_user

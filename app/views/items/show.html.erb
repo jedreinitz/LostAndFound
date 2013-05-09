@@ -1,25 +1,17 @@
-<p id="notice"><%= notice %></p>
+<% if @item.is_lost %>
+<h1>Lost Item: <%= @item.name %></h1>
+<% else %>
+<h1>Found Item: <%= @item.name %></h1>
+<% end %>
 
-<p>
-  <b>User:</b>
-  <%= @item.user %>
-</p>
+<p>Description: <%= @item.description %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @item.name %>
-</p>
+<% if @item.is_lost %>
+<p>Lost by: <%= @item.user.email %></p>
+<% else %>
+<p>Found by: <%= @item.user.email %></p>
+<% end %>
 
-<p>
-  <b>Description:</b>
-  <%= @item.description %>
-</p>
-
-<p>
-  <b>Is lost:</b>
-  <%= @item.is_lost %>
-</p>
-
-
-<%= link_to 'Edit', edit_item_path(@item) %> |
-<%= link_to 'Back', items_path %>
+<% unless @item.is_lost %>
+  <%= link_to "Claim Item", root_url %>
+<% end %>
